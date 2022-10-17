@@ -22,6 +22,7 @@ import LandingPage from "./pages/landing-page/LandingPage";
 import PersistLogin from "./auth/persistLogin/PersistLogin";
 import AlreadyLoggedIn from "./auth/alreadyLoggedIn/AlreadyLoggedIn";
 import RequireAuth from "./auth/requireAuth/RequireAuth";
+import Comments from "./pages/comments/Comments";
 
 const App = () => {
   const { setCurrentPage } = GeneralStore();
@@ -41,40 +42,38 @@ const App = () => {
       <GlobalStyles />
       <Routes>
         <Route element={<PersistLogin />}>
+          <Route element={<AlreadyLoggedIn />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
 
-          <Route element={<AlreadyLoggedIn />}>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-          </Route>
-
-          <Route element={<RequireAuth />}>
-            <Route path="/dashboard" element={<PagesIndex />}>
-              <Route index element={<Home />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="reports">
-                <Route index element={<Reports />} />
-                <Route path=":id" element={<ReportsInfo />} />
-              </Route>
-              <Route path="employees">
-                <Route index element={<AllEmployees />} />
-                <Route path="create" element={<Employees />} />
-              </Route>
-              <Route path="categories">
-                <Route index element={<Categories />} />
-              </Route>
-              <Route path="event" element={<Event />} />
-              <Route path="business" element={<Business />} />
-              <Route path="help" element={<Help />} />
-              <Route path="posts">
-                <Route index element={<Posts />} />
-                <Route path="gif" element={<CreateGIF />} />
-                <Route path="article" element={<CreateArticle />} />
-              </Route>
-              <Route path="*" element={<Home />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/dashboard" element={<PagesIndex />}>
+            <Route index element={<Home />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="reports">
+              <Route index element={<Reports />} />
+              <Route path=":id" element={<ReportsInfo />} />
             </Route>
+            <Route path="employees">
+              <Route index element={<AllEmployees />} />
+              <Route path="create" element={<Employees />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<Categories />} />
+            </Route>
+            <Route path="event" element={<Event />} />
+            <Route path="business" element={<Business />} />
+            <Route path="help" element={<Help />} />
+            <Route path="posts">
+              <Route index element={<Posts />} />
+              <Route path="gif" element={<CreateGIF />} />
+              <Route path="article" element={<CreateArticle />} />
+              <Route path="comment" element={<Comments />} />
+            </Route>
+            <Route path="*" element={<Home />} />
           </Route>
-
         </Route>
       </Routes>
     </div>
